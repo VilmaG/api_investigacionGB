@@ -11,22 +11,27 @@ dbConection();
 
 //estableciendo la configuracion de cors
 app.use(cors());
+//parcelar objetos json
+app.use(express.json());
 
 //verificando variables de entorno
 //console.log(process.env);
 
 //creando las rutas de mi app
-app.get('/',(req,res)=>{
-    res.json({
-        ok: true,
-        msg: "Bienvenidos a la App Proyectos"
-    });
-});
+app.use('/api/usuarios',require('./routes/usuarios.routes'));
+
+app.use('/api/login', require('./routes/auth.routes'));
+
 
 // codigo para desplegar el servidor
 app.listen(process.env.PORT,()=>{
     console.log('Serviodr Node.js desplegado en el puerto:' + 3000)
 })
+
+
+
+
+
 
 //password de la base de datos     status(400).
 //ZYUJ8n7nbsCx3HST
